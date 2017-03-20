@@ -1,0 +1,2490 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.4.11
+-- Dumped by pg_dump version 9.4.11
+-- Started on 2017-03-20 12:54:37 -04
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+DROP DATABASE runoppa;
+--
+-- TOC entry 2350 (class 1262 OID 16982)
+-- Name: runoppa; Type: DATABASE; Schema: -; Owner: yramirez
+--
+
+CREATE DATABASE runoppa WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'es_VE.UTF-8' LC_CTYPE = 'es_VE.UTF-8';
+
+
+ALTER DATABASE runoppa OWNER TO yramirez;
+
+\connect runoppa
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 1 (class 3079 OID 11861)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2353 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 173 (class 1259 OID 17450)
+-- Name: agricultural_roads; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE agricultural_roads (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE agricultural_roads OWNER TO postgres;
+
+--
+-- TOC entry 174 (class 1259 OID 17456)
+-- Name: agricultural_roads_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE agricultural_roads_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE agricultural_roads_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2354 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: agricultural_roads_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE agricultural_roads_id_seq OWNED BY agricultural_roads.id;
+
+
+--
+-- TOC entry 175 (class 1259 OID 17458)
+-- Name: appointments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE appointments (
+    id integer NOT NULL,
+    appointment_status boolean NOT NULL,
+    star_date date NOT NULL,
+    finish_date date NOT NULL,
+    observation character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE appointments OWNER TO postgres;
+
+--
+-- TOC entry 176 (class 1259 OID 17461)
+-- Name: appointments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE appointments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE appointments_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2355 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: appointments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE appointments_id_seq OWNED BY appointments.id;
+
+
+--
+-- TOC entry 177 (class 1259 OID 17463)
+-- Name: buildings; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE buildings (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE buildings OWNER TO postgres;
+
+--
+-- TOC entry 178 (class 1259 OID 17469)
+-- Name: buildings_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE buildings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE buildings_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2356 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: buildings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE buildings_id_seq OWNED BY buildings.id;
+
+
+--
+-- TOC entry 179 (class 1259 OID 17471)
+-- Name: certifications; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE certifications (
+    id integer NOT NULL,
+    date_issue date NOT NULL,
+    date_epiration date NOT NULL,
+    certification_status boolean NOT NULL,
+    certification_serial character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE certifications OWNER TO postgres;
+
+--
+-- TOC entry 180 (class 1259 OID 17474)
+-- Name: certifications_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE certifications_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE certifications_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2357 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: certifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE certifications_id_seq OWNED BY certifications.id;
+
+
+--
+-- TOC entry 181 (class 1259 OID 17476)
+-- Name: cycles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE cycles (
+    id integer NOT NULL,
+    type_cycle character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE cycles OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 17479)
+-- Name: cycles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE cycles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE cycles_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2358 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: cycles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE cycles_id_seq OWNED BY cycles.id;
+
+
+--
+-- TOC entry 183 (class 1259 OID 17481)
+-- Name: facilities; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE facilities (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE facilities OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 17487)
+-- Name: facilities_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE facilities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE facilities_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2359 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: facilities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE facilities_id_seq OWNED BY facilities.id;
+
+
+--
+-- TOC entry 185 (class 1259 OID 17489)
+-- Name: indigenous_peoples; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE indigenous_peoples (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE indigenous_peoples OWNER TO postgres;
+
+--
+-- TOC entry 186 (class 1259 OID 17495)
+-- Name: indigenous_peoples_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE indigenous_peoples_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE indigenous_peoples_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2360 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: indigenous_peoples_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE indigenous_peoples_id_seq OWNED BY indigenous_peoples.id;
+
+
+--
+-- TOC entry 187 (class 1259 OID 17497)
+-- Name: institutes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE institutes (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE institutes OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 17503)
+-- Name: institutes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE institutes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE institutes_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2361 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: institutes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE institutes_id_seq OWNED BY institutes.id;
+
+
+--
+-- TOC entry 189 (class 1259 OID 17505)
+-- Name: machineries; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE machineries (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE machineries OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 17511)
+-- Name: machineries_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE machineries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE machineries_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2362 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: machineries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE machineries_id_seq OWNED BY machineries.id;
+
+
+--
+-- TOC entry 191 (class 1259 OID 17513)
+-- Name: migrations; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE migrations (
+    id integer NOT NULL,
+    migration character varying(255) NOT NULL,
+    batch integer NOT NULL
+);
+
+
+ALTER TABLE migrations OWNER TO postgres;
+
+--
+-- TOC entry 192 (class 1259 OID 17516)
+-- Name: migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE migrations_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2363 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE migrations_id_seq OWNED BY migrations.id;
+
+
+--
+-- TOC entry 193 (class 1259 OID 17518)
+-- Name: password_resets; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE password_resets (
+    email character varying(255) NOT NULL,
+    token character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE password_resets OWNER TO postgres;
+
+--
+-- TOC entry 194 (class 1259 OID 17524)
+-- Name: people; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE people (
+    id integer NOT NULL,
+    first_name character varying(255) NOT NULL,
+    second_name character varying(255) NOT NULL,
+    first_surname character varying(255) NOT NULL,
+    second_surname character varying(255) NOT NULL,
+    social_reason character varying(255) NOT NULL,
+    identy_card character varying(255) NOT NULL,
+    date_born date NOT NULL,
+    gender_person integer NOT NULL,
+    civil_state integer NOT NULL,
+    degree_instructio integer NOT NULL,
+    lives_production_unity boolean NOT NULL,
+    address_domicile character varying(255) NOT NULL,
+    number_local character varying(255) NOT NULL,
+    number_mobile character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE people OWNER TO postgres;
+
+--
+-- TOC entry 195 (class 1259 OID 17530)
+-- Name: people_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE people_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE people_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2364 (class 0 OID 0)
+-- Dependencies: 195
+-- Name: people_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE people_id_seq OWNED BY people.id;
+
+
+--
+-- TOC entry 196 (class 1259 OID 17532)
+-- Name: permissions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE permissions (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE permissions OWNER TO postgres;
+
+--
+-- TOC entry 197 (class 1259 OID 17535)
+-- Name: permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE permissions_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2365 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE permissions_id_seq OWNED BY permissions.id;
+
+
+--
+-- TOC entry 198 (class 1259 OID 17537)
+-- Name: person_people; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE person_people (
+    id integer NOT NULL,
+    family_relationship character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE person_people OWNER TO postgres;
+
+--
+-- TOC entry 199 (class 1259 OID 17540)
+-- Name: person_people_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE person_people_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE person_people_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2366 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: person_people_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE person_people_id_seq OWNED BY person_people.id;
+
+
+--
+-- TOC entry 200 (class 1259 OID 17542)
+-- Name: popular_organizations; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE popular_organizations (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    rif character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE popular_organizations OWNER TO postgres;
+
+--
+-- TOC entry 201 (class 1259 OID 17548)
+-- Name: popular_organizations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE popular_organizations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE popular_organizations_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2367 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: popular_organizations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE popular_organizations_id_seq OWNED BY popular_organizations.id;
+
+
+--
+-- TOC entry 202 (class 1259 OID 17550)
+-- Name: problematics; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE problematics (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE problematics OWNER TO postgres;
+
+--
+-- TOC entry 203 (class 1259 OID 17556)
+-- Name: problematics_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE problematics_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE problematics_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2368 (class 0 OID 0)
+-- Dependencies: 203
+-- Name: problematics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE problematics_id_seq OWNED BY problematics.id;
+
+
+--
+-- TOC entry 204 (class 1259 OID 17558)
+-- Name: production_destinies; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE production_destinies (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE production_destinies OWNER TO postgres;
+
+--
+-- TOC entry 205 (class 1259 OID 17564)
+-- Name: production_destinies_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE production_destinies_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE production_destinies_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2369 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: production_destinies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE production_destinies_id_seq OWNED BY production_destinies.id;
+
+
+--
+-- TOC entry 206 (class 1259 OID 17566)
+-- Name: production_units; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE production_units (
+    id integer NOT NULL,
+    number_document_earth character varying(255) NOT NULL,
+    name_production_unit character varying(255) NOT NULL,
+    total_surface integer NOT NULL,
+    usable_surface integer NOT NULL,
+    surface_used integer NOT NULL,
+    production_unit_clasification integer NOT NULL,
+    export boolean NOT NULL,
+    import_need boolean NOT NULL,
+    attached_agency boolean NOT NULL,
+    agency_type integer NOT NULL,
+    agency_name character varying(255) NOT NULL,
+    agency_rif integer NOT NULL,
+    depart_quality_control boolean NOT NULL,
+    depart_investigation boolean NOT NULL,
+    pilot_plan boolean NOT NULL,
+    community_participation boolean NOT NULL,
+    sica_registred boolean NOT NULL,
+    sunagro boolean NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE production_units OWNER TO postgres;
+
+--
+-- TOC entry 207 (class 1259 OID 17572)
+-- Name: production_units_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE production_units_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE production_units_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2370 (class 0 OID 0)
+-- Dependencies: 207
+-- Name: production_units_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE production_units_id_seq OWNED BY production_units.id;
+
+
+--
+-- TOC entry 208 (class 1259 OID 17574)
+-- Name: role_has_permissions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE role_has_permissions (
+    permission_id integer NOT NULL,
+    role_id integer NOT NULL
+);
+
+
+ALTER TABLE role_has_permissions OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 17577)
+-- Name: roles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE roles (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE roles OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 17580)
+-- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE roles_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2371 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE roles_id_seq OWNED BY roles.id;
+
+
+--
+-- TOC entry 211 (class 1259 OID 17582)
+-- Name: scaffoldinterfaces; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE scaffoldinterfaces (
+    id integer NOT NULL,
+    package character varying(255) NOT NULL,
+    migration character varying(255) NOT NULL,
+    model character varying(255) NOT NULL,
+    controller character varying(255) NOT NULL,
+    views character varying(255) NOT NULL,
+    tablename character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE scaffoldinterfaces OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 17588)
+-- Name: scaffoldinterfaces_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE scaffoldinterfaces_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE scaffoldinterfaces_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2372 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: scaffoldinterfaces_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE scaffoldinterfaces_id_seq OWNED BY scaffoldinterfaces.id;
+
+
+--
+-- TOC entry 213 (class 1259 OID 17590)
+-- Name: services; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE services (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE services OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 17596)
+-- Name: services_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE services_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE services_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2373 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: services_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE services_id_seq OWNED BY services.id;
+
+
+--
+-- TOC entry 215 (class 1259 OID 17598)
+-- Name: social_networks; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE social_networks (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE social_networks OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 17604)
+-- Name: social_networks_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE social_networks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE social_networks_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2374 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: social_networks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE social_networks_id_seq OWNED BY social_networks.id;
+
+
+--
+-- TOC entry 217 (class 1259 OID 17606)
+-- Name: transports; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE transports (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE transports OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 17612)
+-- Name: transports_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE transports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE transports_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2375 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: transports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE transports_id_seq OWNED BY transports.id;
+
+
+--
+-- TOC entry 219 (class 1259 OID 17614)
+-- Name: type_document_earths; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE type_document_earths (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE type_document_earths OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 17620)
+-- Name: type_document_earths_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE type_document_earths_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE type_document_earths_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2376 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: type_document_earths_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE type_document_earths_id_seq OWNED BY type_document_earths.id;
+
+
+--
+-- TOC entry 221 (class 1259 OID 17622)
+-- Name: type_identy_cards; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE type_identy_cards (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    type character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE type_identy_cards OWNER TO postgres;
+
+--
+-- TOC entry 222 (class 1259 OID 17628)
+-- Name: type_identy_cards_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE type_identy_cards_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE type_identy_cards_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2377 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: type_identy_cards_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE type_identy_cards_id_seq OWNED BY type_identy_cards.id;
+
+
+--
+-- TOC entry 223 (class 1259 OID 17630)
+-- Name: user_has_permissions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE user_has_permissions (
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE user_has_permissions OWNER TO postgres;
+
+--
+-- TOC entry 224 (class 1259 OID 17633)
+-- Name: user_has_roles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE user_has_roles (
+    role_id integer NOT NULL,
+    user_id integer NOT NULL
+);
+
+
+ALTER TABLE user_has_roles OWNER TO postgres;
+
+--
+-- TOC entry 225 (class 1259 OID 17636)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    password character varying(255) NOT NULL,
+    remember_token character varying(100),
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE users OWNER TO postgres;
+
+--
+-- TOC entry 226 (class 1259 OID 17642)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE users_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2378 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- TOC entry 227 (class 1259 OID 17644)
+-- Name: vegetable_sectors; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE vegetable_sectors (
+    id integer NOT NULL,
+    irrigation_method character varying(255) NOT NULL,
+    ambient_type character varying(255) NOT NULL,
+    irrigation_capacity integer NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE vegetable_sectors OWNER TO postgres;
+
+--
+-- TOC entry 228 (class 1259 OID 17650)
+-- Name: vegetable_sectors_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE vegetable_sectors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE vegetable_sectors_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2379 (class 0 OID 0)
+-- Dependencies: 228
+-- Name: vegetable_sectors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE vegetable_sectors_id_seq OWNED BY vegetable_sectors.id;
+
+
+--
+-- TOC entry 229 (class 1259 OID 17652)
+-- Name: water_sources; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE water_sources (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    deleted_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE water_sources OWNER TO postgres;
+
+--
+-- TOC entry 230 (class 1259 OID 17658)
+-- Name: water_sources_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE water_sources_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE water_sources_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2380 (class 0 OID 0)
+-- Dependencies: 230
+-- Name: water_sources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE water_sources_id_seq OWNED BY water_sources.id;
+
+
+--
+-- TOC entry 2078 (class 2604 OID 17660)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY agricultural_roads ALTER COLUMN id SET DEFAULT nextval('agricultural_roads_id_seq'::regclass);
+
+
+--
+-- TOC entry 2079 (class 2604 OID 17661)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY appointments ALTER COLUMN id SET DEFAULT nextval('appointments_id_seq'::regclass);
+
+
+--
+-- TOC entry 2080 (class 2604 OID 17662)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY buildings ALTER COLUMN id SET DEFAULT nextval('buildings_id_seq'::regclass);
+
+
+--
+-- TOC entry 2081 (class 2604 OID 17663)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY certifications ALTER COLUMN id SET DEFAULT nextval('certifications_id_seq'::regclass);
+
+
+--
+-- TOC entry 2082 (class 2604 OID 17664)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY cycles ALTER COLUMN id SET DEFAULT nextval('cycles_id_seq'::regclass);
+
+
+--
+-- TOC entry 2083 (class 2604 OID 17665)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY facilities ALTER COLUMN id SET DEFAULT nextval('facilities_id_seq'::regclass);
+
+
+--
+-- TOC entry 2084 (class 2604 OID 17666)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY indigenous_peoples ALTER COLUMN id SET DEFAULT nextval('indigenous_peoples_id_seq'::regclass);
+
+
+--
+-- TOC entry 2085 (class 2604 OID 17667)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY institutes ALTER COLUMN id SET DEFAULT nextval('institutes_id_seq'::regclass);
+
+
+--
+-- TOC entry 2086 (class 2604 OID 17668)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY machineries ALTER COLUMN id SET DEFAULT nextval('machineries_id_seq'::regclass);
+
+
+--
+-- TOC entry 2087 (class 2604 OID 17669)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY migrations ALTER COLUMN id SET DEFAULT nextval('migrations_id_seq'::regclass);
+
+
+--
+-- TOC entry 2088 (class 2604 OID 17670)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY people ALTER COLUMN id SET DEFAULT nextval('people_id_seq'::regclass);
+
+
+--
+-- TOC entry 2089 (class 2604 OID 17671)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY permissions ALTER COLUMN id SET DEFAULT nextval('permissions_id_seq'::regclass);
+
+
+--
+-- TOC entry 2090 (class 2604 OID 17672)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY person_people ALTER COLUMN id SET DEFAULT nextval('person_people_id_seq'::regclass);
+
+
+--
+-- TOC entry 2091 (class 2604 OID 17673)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY popular_organizations ALTER COLUMN id SET DEFAULT nextval('popular_organizations_id_seq'::regclass);
+
+
+--
+-- TOC entry 2092 (class 2604 OID 17674)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY problematics ALTER COLUMN id SET DEFAULT nextval('problematics_id_seq'::regclass);
+
+
+--
+-- TOC entry 2093 (class 2604 OID 17675)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY production_destinies ALTER COLUMN id SET DEFAULT nextval('production_destinies_id_seq'::regclass);
+
+
+--
+-- TOC entry 2094 (class 2604 OID 17676)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY production_units ALTER COLUMN id SET DEFAULT nextval('production_units_id_seq'::regclass);
+
+
+--
+-- TOC entry 2095 (class 2604 OID 17677)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regclass);
+
+
+--
+-- TOC entry 2096 (class 2604 OID 17678)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY scaffoldinterfaces ALTER COLUMN id SET DEFAULT nextval('scaffoldinterfaces_id_seq'::regclass);
+
+
+--
+-- TOC entry 2097 (class 2604 OID 17679)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY services ALTER COLUMN id SET DEFAULT nextval('services_id_seq'::regclass);
+
+
+--
+-- TOC entry 2098 (class 2604 OID 17680)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY social_networks ALTER COLUMN id SET DEFAULT nextval('social_networks_id_seq'::regclass);
+
+
+--
+-- TOC entry 2099 (class 2604 OID 17681)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY transports ALTER COLUMN id SET DEFAULT nextval('transports_id_seq'::regclass);
+
+
+--
+-- TOC entry 2100 (class 2604 OID 17682)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY type_document_earths ALTER COLUMN id SET DEFAULT nextval('type_document_earths_id_seq'::regclass);
+
+
+--
+-- TOC entry 2101 (class 2604 OID 17683)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY type_identy_cards ALTER COLUMN id SET DEFAULT nextval('type_identy_cards_id_seq'::regclass);
+
+
+--
+-- TOC entry 2102 (class 2604 OID 17684)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- TOC entry 2103 (class 2604 OID 17685)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY vegetable_sectors ALTER COLUMN id SET DEFAULT nextval('vegetable_sectors_id_seq'::regclass);
+
+
+--
+-- TOC entry 2104 (class 2604 OID 17686)
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY water_sources ALTER COLUMN id SET DEFAULT nextval('water_sources_id_seq'::regclass);
+
+
+--
+-- TOC entry 2288 (class 0 OID 17450)
+-- Dependencies: 173
+-- Data for Name: agricultural_roads; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO agricultural_roads (id, name, description, created_at, updated_at, deleted_at) VALUES (1, 'Asfaltada', 'Asfaltada', '2017-03-15 19:57:38', '2017-03-15 19:57:38', NULL);
+INSERT INTO agricultural_roads (id, name, description, created_at, updated_at, deleted_at) VALUES (2, 'Concreto', 'Concreto', '2017-03-15 19:57:51', '2017-03-15 19:57:51', NULL);
+INSERT INTO agricultural_roads (id, name, description, created_at, updated_at, deleted_at) VALUES (3, 'Grazon', 'Grazon', '2017-03-15 19:58:02', '2017-03-15 19:58:02', NULL);
+INSERT INTO agricultural_roads (id, name, description, created_at, updated_at, deleted_at) VALUES (4, 'Porces de Asfalto', 'Porces de Asfalto', '2017-03-15 19:58:18', '2017-03-15 19:58:18', NULL);
+INSERT INTO agricultural_roads (id, name, description, created_at, updated_at, deleted_at) VALUES (5, 'Tierra', 'Tierra', '2017-03-15 19:58:26', '2017-03-15 19:58:26', NULL);
+
+
+--
+-- TOC entry 2381 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: agricultural_roads_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('agricultural_roads_id_seq', 5, true);
+
+
+--
+-- TOC entry 2290 (class 0 OID 17458)
+-- Dependencies: 175
+-- Data for Name: appointments; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2382 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: appointments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('appointments_id_seq', 1, false);
+
+
+--
+-- TOC entry 2292 (class 0 OID 17463)
+-- Dependencies: 177
+-- Data for Name: buildings; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO buildings (id, name, description, created_at, updated_at, deleted_at) VALUES (1, 'Area Administrativa', '', '2017-03-16 18:32:40', '2017-03-16 18:32:40', NULL);
+INSERT INTO buildings (id, name, description, created_at, updated_at, deleted_at) VALUES (2, 'Cuarto de Aseo', '', '2017-03-16 18:42:10', '2017-03-16 18:42:26', '2017-03-16 18:42:26');
+INSERT INTO buildings (id, name, description, created_at, updated_at, deleted_at) VALUES (4, 'Cuarto de Aseo', '', '2017-03-16 18:43:41', '2017-03-16 18:43:41', NULL);
+INSERT INTO buildings (id, name, description, created_at, updated_at, deleted_at) VALUES (3, 'Almacén', '', '2017-03-16 18:42:40', '2017-03-16 18:43:45', NULL);
+INSERT INTO buildings (id, name, description, created_at, updated_at, deleted_at) VALUES (5, 'Depósito', '', '2017-03-16 18:44:31', '2017-03-16 18:44:31', NULL);
+INSERT INTO buildings (id, name, description, created_at, updated_at, deleted_at) VALUES (6, 'Galpón (m2)', '', '2017-03-16 18:45:58', '2017-03-16 18:45:58', NULL);
+INSERT INTO buildings (id, name, description, created_at, updated_at, deleted_at) VALUES (7, 'Galpón de Almacenamiento de Alimentos', 'Galpones', '2017-03-16 18:46:24', '2017-03-16 18:46:24', NULL);
+INSERT INTO buildings (id, name, description, created_at, updated_at, deleted_at) VALUES (8, 'Galpón de Almacenamiento de  Herramientas', 'Galpones', '2017-03-16 18:46:57', '2017-03-16 18:46:57', NULL);
+INSERT INTO buildings (id, name, description, created_at, updated_at, deleted_at) VALUES (9, 'Galpón de Almacenamiento de  Maquinarias y Equipos', 'Galpones', '2017-03-16 18:47:17', '2017-03-16 18:47:17', NULL);
+INSERT INTO buildings (id, name, description, created_at, updated_at, deleted_at) VALUES (10, 'Laboratorio', '', '2017-03-16 18:48:41', '2017-03-16 18:48:41', NULL);
+INSERT INTO buildings (id, name, description, created_at, updated_at, deleted_at) VALUES (11, 'Taller', '', '2017-03-16 18:49:01', '2017-03-16 18:49:01', NULL);
+INSERT INTO buildings (id, name, description, created_at, updated_at, deleted_at) VALUES (12, 'Silos', '', '2017-03-16 18:49:11', '2017-03-16 18:49:11', NULL);
+INSERT INTO buildings (id, name, description, created_at, updated_at, deleted_at) VALUES (13, 'Vivienda Principal', '', '2017-03-16 18:49:58', '2017-03-16 18:49:58', NULL);
+INSERT INTO buildings (id, name, description, created_at, updated_at, deleted_at) VALUES (14, 'Vivienda para Obreros', '', '2017-03-16 18:50:05', '2017-03-16 18:50:05', NULL);
+
+
+--
+-- TOC entry 2383 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: buildings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('buildings_id_seq', 14, true);
+
+
+--
+-- TOC entry 2294 (class 0 OID 17471)
+-- Dependencies: 179
+-- Data for Name: certifications; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2384 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: certifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('certifications_id_seq', 1, false);
+
+
+--
+-- TOC entry 2296 (class 0 OID 17476)
+-- Dependencies: 181
+-- Data for Name: cycles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2385 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: cycles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('cycles_id_seq', 1, false);
+
+
+--
+-- TOC entry 2298 (class 0 OID 17481)
+-- Dependencies: 183
+-- Data for Name: facilities; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO facilities (id, name, description, created_at, updated_at, deleted_at) VALUES (6, 'Área Administrativa', 'Áreas', '2017-03-16 19:00:33', '2017-03-16 19:00:33', NULL);
+INSERT INTO facilities (id, name, description, created_at, updated_at, deleted_at) VALUES (1, 'Área de Inseminación Artificial', 'Áreas', '2017-03-16 18:57:39', '2017-03-16 19:00:42', NULL);
+INSERT INTO facilities (id, name, description, created_at, updated_at, deleted_at) VALUES (2, 'Área de Monta Natural', 'Áreas', '2017-03-16 18:57:54', '2017-03-16 19:00:46', NULL);
+INSERT INTO facilities (id, name, description, created_at, updated_at, deleted_at) VALUES (4, 'Área de Manejo de Huevos', 'Áreas', '2017-03-16 18:59:00', '2017-03-16 19:00:50', NULL);
+INSERT INTO facilities (id, name, description, created_at, updated_at, deleted_at) VALUES (3, 'Área de Matanza', 'Áreas', '2017-03-16 18:58:46', '2017-03-16 19:00:54', NULL);
+INSERT INTO facilities (id, name, description, created_at, updated_at, deleted_at) VALUES (5, 'Área de Pastoreo', 'Áreas', '2017-03-16 19:00:17', '2017-03-16 19:00:57', NULL);
+
+
+--
+-- TOC entry 2386 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: facilities_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('facilities_id_seq', 6, true);
+
+
+--
+-- TOC entry 2300 (class 0 OID 17489)
+-- Dependencies: 185
+-- Data for Name: indigenous_peoples; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2387 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: indigenous_peoples_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('indigenous_peoples_id_seq', 1, false);
+
+
+--
+-- TOC entry 2302 (class 0 OID 17497)
+-- Dependencies: 187
+-- Data for Name: institutes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2388 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: institutes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('institutes_id_seq', 1, false);
+
+
+--
+-- TOC entry 2304 (class 0 OID 17505)
+-- Dependencies: 189
+-- Data for Name: machineries; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (1, 'Arados', 'Maquinaria', '2017-03-15 20:23:08', '2017-03-15 20:23:08', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (2, 'Asperjadoras', 'Maquinaria', '2017-03-15 20:23:22', '2017-03-15 20:23:22', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (3, 'Abonadoras', 'Maquinaria', '2017-03-15 20:23:37', '2017-03-15 20:23:37', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (4, 'Bazucas', 'Maquinaria', '2017-03-15 20:23:55', '2017-03-16 14:30:34', '2017-03-16 14:30:34');
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (5, 'Acopladoras', 'Maquinaria', '2017-03-16 14:30:40', '2017-03-16 14:30:48', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (6, 'Bazucas', 'Maquinaria', '2017-03-16 14:33:11', '2017-03-16 14:33:11', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (7, 'Cosechadoras', 'Maquinaria', '2017-03-16 14:33:37', '2017-03-16 14:33:37', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (8, 'Cultivadoras', 'Maquinaria', '2017-03-16 14:33:53', '2017-03-16 14:33:53', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (9, 'Descortezadora', 'Equipo', '2017-03-16 14:35:10', '2017-03-16 14:35:10', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (10, 'Desgranadora', 'Maquinaria', '2017-03-16 14:38:33', '2017-03-16 14:38:33', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (11, 'Desmalezadora Rotativa', 'Maquinaria', '2017-03-16 14:39:18', '2017-03-16 14:39:18', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (12, 'Desterronadora o Rastra', 'Maquinaria', '2017-03-16 14:41:00', '2017-03-16 14:41:00', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (13, 'Bigrome o Rastra', 'Maquinaria', '2017-03-16 14:41:29', '2017-03-16 14:41:29', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (14, 'Encaladora', 'Maquinaria', '2017-03-16 14:49:23', '2017-03-16 14:49:23', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (15, 'Electrobomba', 'Maquinaria', '2017-03-16 14:49:33', '2017-03-16 14:49:33', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (16, 'Molinos de Vientos', 'Maquinaria', '2017-03-16 14:52:30', '2017-03-16 14:52:40', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (17, 'Motobomba', 'Maquinaria', '2017-03-16 14:52:51', '2017-03-16 14:52:51', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (18, 'Motor Diesel', 'Maquinaria', '2017-03-16 14:53:15', '2017-03-16 14:53:15', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (19, 'Motosierra', 'Maquinaria', '2017-03-16 14:53:28', '2017-03-16 14:53:35', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (20, 'Niveladoras', 'Maquinaria', '2017-03-16 15:06:21', '2017-03-16 15:06:21', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (21, 'Otros', 'Maquinaria', '2017-03-16 15:06:43', '2017-03-16 15:06:43', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (22, 'Patrol', 'Maquinaria', '2017-03-16 15:17:25', '2017-03-16 15:17:25', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (23, 'Payloder', 'Maquinaria', '2017-03-16 15:17:55', '2017-03-16 15:17:55', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (24, 'Remolque', 'Maquinaria', '2017-03-16 15:18:15', '2017-03-16 15:18:15', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (25, 'Sembradora', 'Maquinaria', '2017-03-16 15:18:41', '2017-03-16 15:18:41', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (26, 'Secadora de Grano', 'Maquinaria', '2017-03-16 15:20:34', '2017-03-16 15:20:34', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (27, 'Segadora', 'Maquinaria', '2017-03-16 15:20:47', '2017-03-16 15:20:47', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (28, 'Sembradora Abonadoras', 'Maquinaria', '2017-03-16 15:21:06', '2017-03-16 15:21:06', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (29, 'Subsolador', 'Maquinaria', '2017-03-16 15:23:24', '2017-03-16 15:23:24', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (30, 'Trailer', 'Maquinaria', '2017-03-16 15:24:04', '2017-03-16 15:24:04', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (31, 'Trilladora', 'Maquinaria', '2017-03-16 15:24:13', '2017-03-16 15:24:13', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (32, 'Trompo Fertilizador', 'Maquinaria', '2017-03-16 18:07:30', '2017-03-16 18:07:30', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (33, 'Termonebulizadores', 'Maquinaria', '2017-03-16 18:08:02', '2017-03-16 18:08:02', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (34, 'Yona', 'Maquinaria', '2017-03-16 18:08:53', '2017-03-16 18:08:53', NULL);
+INSERT INTO machineries (id, name, description, created_at, updated_at, deleted_at) VALUES (35, 'Zorra', 'Maquinaria', '2017-03-16 18:09:02', '2017-03-16 18:09:11', NULL);
+
+
+--
+-- TOC entry 2389 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: machineries_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('machineries_id_seq', 35, true);
+
+
+--
+-- TOC entry 2306 (class 0 OID 17513)
+-- Dependencies: 191
+-- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO migrations (id, migration, batch) VALUES (1, '2014_10_12_000000_create_users_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (2, '2014_10_12_100000_create_password_resets_table', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (3, '2015_10_31_162633_scaffoldinterfaces', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (4, '2017_02_15_161746_create_permission_tables', 1);
+INSERT INTO migrations (id, migration, batch) VALUES (5, '2017_02_15_043043_services', 2);
+INSERT INTO migrations (id, migration, batch) VALUES (10, '2017_02_15_090107_social_networks', 3);
+INSERT INTO migrations (id, migration, batch) VALUES (11, '2017_02_15_090459_production_destinies', 3);
+INSERT INTO migrations (id, migration, batch) VALUES (12, '2017_02_15_091239_water_sources', 3);
+INSERT INTO migrations (id, migration, batch) VALUES (13, '2017_02_16_023322_buildings', 4);
+INSERT INTO migrations (id, migration, batch) VALUES (14, '2017_02_16_023405_transports', 4);
+INSERT INTO migrations (id, migration, batch) VALUES (15, '2017_02_16_024156_facilities', 5);
+INSERT INTO migrations (id, migration, batch) VALUES (16, '2017_02_16_024428_machineries', 5);
+INSERT INTO migrations (id, migration, batch) VALUES (17, '2017_02_16_024735_institutes', 6);
+INSERT INTO migrations (id, migration, batch) VALUES (18, '2017_02_16_024949_agricultural_roads', 6);
+INSERT INTO migrations (id, migration, batch) VALUES (19, '2017_02_16_025012_problematics', 6);
+INSERT INTO migrations (id, migration, batch) VALUES (20, '2017_02_16_025053_type_document_earths', 7);
+INSERT INTO migrations (id, migration, batch) VALUES (21, '2017_02_16_074509_production_units', 8);
+INSERT INTO migrations (id, migration, batch) VALUES (22, '2017_02_16_080904_indigenous_peoples', 9);
+INSERT INTO migrations (id, migration, batch) VALUES (23, '2017_02_16_082234_popular_organizations', 9);
+INSERT INTO migrations (id, migration, batch) VALUES (24, '2017_02_16_083015_appointments', 10);
+INSERT INTO migrations (id, migration, batch) VALUES (26, '2017_02_16_083058_person_people', 11);
+INSERT INTO migrations (id, migration, batch) VALUES (27, '2017_02_17_023112_people', 11);
+INSERT INTO migrations (id, migration, batch) VALUES (28, '2017_02_17_025244_certifications', 12);
+INSERT INTO migrations (id, migration, batch) VALUES (29, '2017_02_17_035239_type_identy_cards', 13);
+INSERT INTO migrations (id, migration, batch) VALUES (30, '2017_03_17_022118_vegetable_sectors', 14);
+INSERT INTO migrations (id, migration, batch) VALUES (31, '2017_03_17_022157_cycles', 14);
+
+
+--
+-- TOC entry 2390 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('migrations_id_seq', 31, true);
+
+
+--
+-- TOC entry 2308 (class 0 OID 17518)
+-- Dependencies: 193
+-- Data for Name: password_resets; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO password_resets (email, token, created_at) VALUES ('anabelereipa@gmail.com', 'ac4e8a99bd6c9c52df0b54c572ac60ec5fdf42d19ad50ce9d6eb3a77c9254909', '2017-02-16 13:47:42');
+
+
+--
+-- TOC entry 2309 (class 0 OID 17524)
+-- Dependencies: 194
+-- Data for Name: people; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2391 (class 0 OID 0)
+-- Dependencies: 195
+-- Name: people_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('people_id_seq', 1, false);
+
+
+--
+-- TOC entry 2311 (class 0 OID 17532)
+-- Dependencies: 196
+-- Data for Name: permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2392 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('permissions_id_seq', 1, false);
+
+
+--
+-- TOC entry 2313 (class 0 OID 17537)
+-- Dependencies: 198
+-- Data for Name: person_people; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2393 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: person_people_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('person_people_id_seq', 1, false);
+
+
+--
+-- TOC entry 2315 (class 0 OID 17542)
+-- Dependencies: 200
+-- Data for Name: popular_organizations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2394 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: popular_organizations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('popular_organizations_id_seq', 1, false);
+
+
+--
+-- TOC entry 2317 (class 0 OID 17550)
+-- Dependencies: 202
+-- Data for Name: problematics; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2395 (class 0 OID 0)
+-- Dependencies: 203
+-- Name: problematics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('problematics_id_seq', 1, false);
+
+
+--
+-- TOC entry 2319 (class 0 OID 17558)
+-- Dependencies: 204
+-- Data for Name: production_destinies; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO production_destinies (id, name, description, created_at, updated_at, deleted_at) VALUES (1, 'Autoconsumo', '', '2017-03-15 20:12:47', '2017-03-15 20:12:47', NULL);
+INSERT INTO production_destinies (id, name, description, created_at, updated_at, deleted_at) VALUES (2, 'A Puerta de Granja', '', '2017-03-15 20:13:00', '2017-03-15 20:13:00', NULL);
+INSERT INTO production_destinies (id, name, description, created_at, updated_at, deleted_at) VALUES (3, 'Exportación', '', '2017-03-15 20:16:13', '2017-03-15 20:16:13', NULL);
+INSERT INTO production_destinies (id, name, description, created_at, updated_at, deleted_at) VALUES (4, 'Industria', '', '2017-03-15 20:16:26', '2017-03-15 20:16:26', NULL);
+INSERT INTO production_destinies (id, name, description, created_at, updated_at, deleted_at) VALUES (5, 'Intermediario', '', '2017-03-15 20:16:37', '2017-03-15 20:16:37', NULL);
+INSERT INTO production_destinies (id, name, description, created_at, updated_at, deleted_at) VALUES (6, 'Mercado', '', '2017-03-15 20:16:44', '2017-03-15 20:16:44', NULL);
+
+
+--
+-- TOC entry 2396 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: production_destinies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('production_destinies_id_seq', 6, true);
+
+
+--
+-- TOC entry 2321 (class 0 OID 17566)
+-- Dependencies: 206
+-- Data for Name: production_units; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2397 (class 0 OID 0)
+-- Dependencies: 207
+-- Name: production_units_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('production_units_id_seq', 1, false);
+
+
+--
+-- TOC entry 2323 (class 0 OID 17574)
+-- Dependencies: 208
+-- Data for Name: role_has_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2324 (class 0 OID 17577)
+-- Dependencies: 209
+-- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2398 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('roles_id_seq', 1, false);
+
+
+--
+-- TOC entry 2326 (class 0 OID 17582)
+-- Dependencies: 211
+-- Data for Name: scaffoldinterfaces; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (1, 'Laravel', '/var/www/html/test/database/migrations/2017_02_15_043043_services.php', '/var/www/html/test/app/Service.php', '/var/www/html/test/app/Http/Controllers/ServiceController.php', '/var/www/html/test/resources/views/service', 'services', '2017-02-15 16:30:43', '2017-02-15 16:30:43');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (4, 'Laravel', '/var/www/html/test/database/migrations/2017_02_15_090107_social_networks.php', '/var/www/html/test/app/Social_network.php', '/var/www/html/test/app/Http/Controllers/Social_networkController.php', '/var/www/html/test/resources/views/social_network', 'social_networks', '2017-02-15 21:01:07', '2017-02-15 21:01:07');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (6, 'Laravel', '/var/www/html/test/database/migrations/2017_02_15_090459_production_destinies.php', '/var/www/html/test/app/Production_destiny.php', '/var/www/html/test/app/Http/Controllers/Production_destinyController.php', '/var/www/html/test/resources/views/production_destiny', 'production_destinies', '2017-02-15 21:04:59', '2017-02-15 21:04:59');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (10, 'Laravel', '/var/www/html/test/database/migrations/2017_02_15_091239_water_sources.php', '/var/www/html/test/app/Water_source.php', '/var/www/html/test/app/Http/Controllers/Water_sourceController.php', '/var/www/html/test/resources/views/water_source', 'water_sources', '2017-02-15 21:12:39', '2017-02-15 21:12:39');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (11, 'Laravel', '/var/www/html/test/database/migrations/2017_02_16_023322_buildings.php', '/var/www/html/test/app/Building.php', '/var/www/html/test/app/Http/Controllers/BuildingController.php', '/var/www/html/test/resources/views/building', 'buildings', '2017-02-16 14:33:22', '2017-02-16 14:33:22');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (12, 'Laravel', '/var/www/html/test/database/migrations/2017_02_16_023405_transports.php', '/var/www/html/test/app/Transport.php', '/var/www/html/test/app/Http/Controllers/TransportController.php', '/var/www/html/test/resources/views/transport', 'transports', '2017-02-16 14:34:06', '2017-02-16 14:34:06');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (13, 'Laravel', '/var/www/html/test/database/migrations/2017_02_16_024156_facilities.php', '/var/www/html/test/app/Facility.php', '/var/www/html/test/app/Http/Controllers/FacilityController.php', '/var/www/html/test/resources/views/facility', 'facilities', '2017-02-16 14:41:56', '2017-02-16 14:41:56');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (14, 'Laravel', '/var/www/html/test/database/migrations/2017_02_16_024428_machineries.php', '/var/www/html/test/app/Machinery.php', '/var/www/html/test/app/Http/Controllers/MachineryController.php', '/var/www/html/test/resources/views/machinery', 'machineries', '2017-02-16 14:44:28', '2017-02-16 14:44:28');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (15, 'Laravel', '/var/www/html/test/database/migrations/2017_02_16_024735_institutes.php', '/var/www/html/test/app/Institute.php', '/var/www/html/test/app/Http/Controllers/InstituteController.php', '/var/www/html/test/resources/views/institute', 'institutes', '2017-02-16 14:47:35', '2017-02-16 14:47:35');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (16, 'Laravel', '/var/www/html/test/database/migrations/2017_02_16_024949_agricultural_roads.php', '/var/www/html/test/app/Agricultural_road.php', '/var/www/html/test/app/Http/Controllers/Agricultural_roadController.php', '/var/www/html/test/resources/views/agricultural_road', 'agricultural_roads', '2017-02-16 14:49:49', '2017-02-16 14:49:49');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (17, 'Laravel', '/var/www/html/test/database/migrations/2017_02_16_025012_problematics.php', '/var/www/html/test/app/Problematic.php', '/var/www/html/test/app/Http/Controllers/ProblematicController.php', '/var/www/html/test/resources/views/problematic', 'problematics', '2017-02-16 14:50:12', '2017-02-16 14:50:12');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (18, 'Laravel', '/var/www/html/test/database/migrations/2017_02_16_025053_type_document_earths.php', '/var/www/html/test/app/Type_document_earth.php', '/var/www/html/test/app/Http/Controllers/Type_document_earthController.php', '/var/www/html/test/resources/views/type_document_earth', 'type_document_earths', '2017-02-16 14:50:53', '2017-02-16 14:50:53');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (19, 'Laravel', '/var/www/html/test/database/migrations/2017_02_16_074509_production_units.php', '/var/www/html/test/app/Production_unit.php', '/var/www/html/test/app/Http/Controllers/Production_unitController.php', '/var/www/html/test/resources/views/production_unit', 'production_units', '2017-02-16 19:45:09', '2017-02-16 19:45:09');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (20, 'Laravel', '/var/www/html/test/database/migrations/2017_02_16_080904_indigenous_peoples.php', '/var/www/html/test/app/Indigenous_person.php', '/var/www/html/test/app/Http/Controllers/Indigenous_personController.php', '/var/www/html/test/resources/views/indigenous_person', 'indigenous_peoples', '2017-02-16 20:09:04', '2017-02-16 20:09:04');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (21, 'Laravel', '/var/www/html/test/database/migrations/2017_02_16_082234_popular_organizations.php', '/var/www/html/test/app/Popular_organization.php', '/var/www/html/test/app/Http/Controllers/Popular_organizationController.php', '/var/www/html/test/resources/views/popular_organization', 'popular_organizations', '2017-02-16 20:22:34', '2017-02-16 20:22:34');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (22, 'Laravel', '/var/www/html/test/database/migrations/2017_02_16_083015_appointments.php', '/var/www/html/test/app/Appointment.php', '/var/www/html/test/app/Http/Controllers/AppointmentController.php', '/var/www/html/test/resources/views/appointment', 'appointments', '2017-02-16 20:30:15', '2017-02-16 20:30:15');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (23, 'Laravel', '/var/www/html/test/database/migrations/2017_02_16_083058_person_people.php', '/var/www/html/test/app/Person_person.php', '/var/www/html/test/app/Http/Controllers/Person_personController.php', '/var/www/html/test/resources/views/person_person', 'person_people', '2017-02-16 20:30:58', '2017-02-16 20:30:58');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (25, 'Laravel', '/var/www/html/test/database/migrations/2017_02_17_023112_people.php', '/var/www/html/test/app/Person.php', '/var/www/html/test/app/Http/Controllers/PersonController.php', '/var/www/html/test/resources/views/person', 'people', '2017-02-17 14:31:12', '2017-02-17 14:31:12');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (26, 'Laravel', '/var/www/html/test/database/migrations/2017_02_17_025244_certifications.php', '/var/www/html/test/app/Certification.php', '/var/www/html/test/app/Http/Controllers/CertificationController.php', '/var/www/html/test/resources/views/certification', 'certifications', '2017-02-17 14:52:44', '2017-02-17 14:52:44');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (27, 'Laravel', '/var/www/html/test/database/migrations/2017_02_17_035239_type_identy_cards.php', '/var/www/html/test/app/Type_identy_card.php', '/var/www/html/test/app/Http/Controllers/Type_identy_cardController.php', '/var/www/html/test/resources/views/type_identy_card', 'type_identy_cards', '2017-02-17 15:52:39', '2017-02-17 15:52:39');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (29, 'Laravel', '/var/www/html/test/database/migrations/2017_03_17_022118_vegetable_sectors.php', '/var/www/html/test/app/Vegetable_sector.php', '/var/www/html/test/app/Http/Controllers/Vegetable_sectorController.php', '/var/www/html/test/resources/views/vegetable_sector', 'vegetable_sectors', '2017-03-17 14:21:18', '2017-03-17 14:21:18');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (30, 'Laravel', '/var/www/html/test/database/migrations/2017_03_17_022157_cycles.php', '/var/www/html/test/app/Cycle.php', '/var/www/html/test/app/Http/Controllers/CycleController.php', '/var/www/html/test/resources/views/cycle', 'cycles', '2017-03-17 14:21:57', '2017-03-17 14:21:57');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (31, 'Laravel', '/var/www/html/test/database/migrations/2017_03_17_024140_breeds.php', '/var/www/html/test/app/Breed.php', '/var/www/html/test/app/Http/Controllers/BreedController.php', '/var/www/html/test/resources/views/breed', 'breeds', '2017-03-17 14:41:40', '2017-03-17 14:41:40');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (32, 'Laravel', '/var/www/html/test/database/migrations/2017_03_17_024257_age_classes.php', '/var/www/html/test/app/Age_class.php', '/var/www/html/test/app/Http/Controllers/Age_classController.php', '/var/www/html/test/resources/views/age_class', 'age_classes', '2017-03-17 14:42:57', '2017-03-17 14:42:57');
+INSERT INTO scaffoldinterfaces (id, package, migration, model, controller, views, tablename, created_at, updated_at) VALUES (33, 'Laravel', '/var/www/html/test/database/migrations/2017_03_17_024327_commercializations.php', '/var/www/html/test/app/Commercialization.php', '/var/www/html/test/app/Http/Controllers/CommercializationController.php', '/var/www/html/test/resources/views/commercialization', 'commercializations', '2017-03-17 14:43:27', '2017-03-17 14:43:27');
+
+
+--
+-- TOC entry 2399 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: scaffoldinterfaces_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('scaffoldinterfaces_id_seq', 33, true);
+
+
+--
+-- TOC entry 2328 (class 0 OID 17590)
+-- Dependencies: 213
+-- Data for Name: services; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO services (id, name, description, created_at, updated_at, deleted_at) VALUES (6, 'Agua Potable', 'Agua Potable', '2017-03-15 14:50:42', '2017-03-15 14:50:42', NULL);
+INSERT INTO services (id, name, description, created_at, updated_at, deleted_at) VALUES (7, 'Aguas Servidas', 'Aguas Servidas', '2017-03-15 19:45:15', '2017-03-15 19:45:15', NULL);
+INSERT INTO services (id, name, description, created_at, updated_at, deleted_at) VALUES (8, 'Electricidad', 'Electricidad', '2017-03-15 19:45:33', '2017-03-15 19:45:33', NULL);
+INSERT INTO services (id, name, description, created_at, updated_at, deleted_at) VALUES (9, 'Telefonía Celular', 'Telefonía Celular', '2017-03-15 19:47:18', '2017-03-15 19:47:18', NULL);
+INSERT INTO services (id, name, description, created_at, updated_at, deleted_at) VALUES (10, 'Telefonía Fija', 'Telefonía Fija', '2017-03-15 19:47:35', '2017-03-15 19:47:35', NULL);
+INSERT INTO services (id, name, description, created_at, updated_at, deleted_at) VALUES (11, 'Digitel', 'Digitel', '2017-03-15 19:48:00', '2017-03-15 19:48:00', NULL);
+INSERT INTO services (id, name, description, created_at, updated_at, deleted_at) VALUES (12, 'Movilnet', 'Movilnet', '2017-03-15 19:48:09', '2017-03-15 19:48:09', NULL);
+INSERT INTO services (id, name, description, created_at, updated_at, deleted_at) VALUES (13, 'Movistar', 'Movistar', '2017-03-15 19:48:21', '2017-03-15 19:48:21', NULL);
+INSERT INTO services (id, name, description, created_at, updated_at, deleted_at) VALUES (14, 'Internet', 'Internet', '2017-03-15 19:48:31', '2017-03-15 19:48:31', NULL);
+INSERT INTO services (id, name, description, created_at, updated_at, deleted_at) VALUES (15, 'Transporte Público', 'Transporte', '2017-03-15 19:48:50', '2017-03-15 19:48:50', NULL);
+INSERT INTO services (id, name, description, created_at, updated_at, deleted_at) VALUES (16, 'Vías Asflatada', 'Vías', '2017-03-15 19:49:05', '2017-03-15 19:49:05', NULL);
+INSERT INTO services (id, name, description, created_at, updated_at, deleted_at) VALUES (17, 'Vías por Asfaltar', 'Vías', '2017-03-15 19:49:17', '2017-03-15 19:49:17', NULL);
+
+
+--
+-- TOC entry 2400 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: services_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('services_id_seq', 17, true);
+
+
+--
+-- TOC entry 2330 (class 0 OID 17598)
+-- Dependencies: 215
+-- Data for Name: social_networks; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO social_networks (id, name, description, created_at, updated_at, deleted_at) VALUES (1, 'Facebook', 'Facebook', '2017-03-15 19:49:58', '2017-03-15 19:49:58', NULL);
+INSERT INTO social_networks (id, name, description, created_at, updated_at, deleted_at) VALUES (2, 'Twitter', 'Twitter', '2017-03-15 19:50:19', '2017-03-15 19:50:19', NULL);
+INSERT INTO social_networks (id, name, description, created_at, updated_at, deleted_at) VALUES (3, 'Instagram', 'Instagram', '2017-03-15 19:50:27', '2017-03-15 19:50:27', NULL);
+INSERT INTO social_networks (id, name, description, created_at, updated_at, deleted_at) VALUES (4, 'Google+', 'Google+', '2017-03-15 19:50:35', '2017-03-15 19:50:35', NULL);
+INSERT INTO social_networks (id, name, description, created_at, updated_at, deleted_at) VALUES (5, 'Tumblr', 'Tumblr', '2017-03-15 19:55:54', '2017-03-15 19:55:54', NULL);
+INSERT INTO social_networks (id, name, description, created_at, updated_at, deleted_at) VALUES (6, 'WhatsApp', 'WhatsApp', '2017-03-15 19:56:26', '2017-03-15 19:56:26', NULL);
+INSERT INTO social_networks (id, name, description, created_at, updated_at, deleted_at) VALUES (7, 'YouTube', 'YouTube', '2017-03-15 19:56:37', '2017-03-15 19:56:37', NULL);
+INSERT INTO social_networks (id, name, description, created_at, updated_at, deleted_at) VALUES (8, 'Pinterest', 'Pinterest', '2017-03-15 19:56:59', '2017-03-15 19:56:59', NULL);
+
+
+--
+-- TOC entry 2401 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: social_networks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('social_networks_id_seq', 8, true);
+
+
+--
+-- TOC entry 2332 (class 0 OID 17606)
+-- Dependencies: 217
+-- Data for Name: transports; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2402 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: transports_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('transports_id_seq', 1, false);
+
+
+--
+-- TOC entry 2334 (class 0 OID 17614)
+-- Dependencies: 219
+-- Data for Name: type_document_earths; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2403 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: type_document_earths_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('type_document_earths_id_seq', 1, false);
+
+
+--
+-- TOC entry 2336 (class 0 OID 17622)
+-- Dependencies: 221
+-- Data for Name: type_identy_cards; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2404 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: type_identy_cards_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('type_identy_cards_id_seq', 1, false);
+
+
+--
+-- TOC entry 2338 (class 0 OID 17630)
+-- Dependencies: 223
+-- Data for Name: user_has_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2339 (class 0 OID 17633)
+-- Dependencies: 224
+-- Data for Name: user_has_roles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2340 (class 0 OID 17636)
+-- Dependencies: 225
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO users (id, name, email, password, remember_token, created_at, updated_at) VALUES (2, 'yramirez', 'esmeraldarengifo1@gmail.com', '$2y$10$8aZ0G5BA2OEpCgl18YpTvObH9/hHkLJt2lHjBo/7J5.YZOwf6B6PK', NULL, '2017-03-20 16:28:47', '2017-03-20 16:28:47');
+
+
+--
+-- TOC entry 2405 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_id_seq', 2, true);
+
+
+--
+-- TOC entry 2342 (class 0 OID 17644)
+-- Dependencies: 227
+-- Data for Name: vegetable_sectors; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2406 (class 0 OID 0)
+-- Dependencies: 228
+-- Name: vegetable_sectors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('vegetable_sectors_id_seq', 1, false);
+
+
+--
+-- TOC entry 2344 (class 0 OID 17652)
+-- Dependencies: 229
+-- Data for Name: water_sources; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO water_sources (id, name, description, created_at, updated_at, deleted_at) VALUES (1, 'Acueducto', 'Acueducto', '2017-03-15 20:01:09', '2017-03-15 20:01:09', NULL);
+INSERT INTO water_sources (id, name, description, created_at, updated_at, deleted_at) VALUES (2, 'Aljibe', 'Aljibe', '2017-03-15 20:01:19', '2017-03-15 20:01:19', NULL);
+INSERT INTO water_sources (id, name, description, created_at, updated_at, deleted_at) VALUES (3, 'Laguna', 'Laguna', '2017-03-15 20:01:34', '2017-03-15 20:01:34', NULL);
+INSERT INTO water_sources (id, name, description, created_at, updated_at, deleted_at) VALUES (4, 'Manantial u Ojo de Agua', 'Manantial', '2017-03-15 20:01:56', '2017-03-15 20:01:56', NULL);
+INSERT INTO water_sources (id, name, description, created_at, updated_at, deleted_at) VALUES (5, 'No Posee', 'No Posee', '2017-03-15 20:02:42', '2017-03-15 20:02:42', NULL);
+INSERT INTO water_sources (id, name, description, created_at, updated_at, deleted_at) VALUES (6, 'Pozo Comunitario', 'Pozo Comunitario', '2017-03-15 20:02:54', '2017-03-15 20:02:54', NULL);
+INSERT INTO water_sources (id, name, description, created_at, updated_at, deleted_at) VALUES (7, 'Quebrada', 'Quebrada', '2017-03-15 20:03:04', '2017-03-15 20:03:04', NULL);
+INSERT INTO water_sources (id, name, description, created_at, updated_at, deleted_at) VALUES (8, 'Planta de Tratamiento', 'Planta de Tratamiento', '2017-03-15 20:11:47', '2017-03-15 20:11:47', NULL);
+INSERT INTO water_sources (id, name, description, created_at, updated_at, deleted_at) VALUES (9, 'Río', 'Río', '2017-03-15 20:11:56', '2017-03-15 20:11:56', NULL);
+INSERT INTO water_sources (id, name, description, created_at, updated_at, deleted_at) VALUES (10, 'Sistema de Riego', 'Sistema de Riego', '2017-03-15 20:12:09', '2017-03-15 20:12:09', NULL);
+
+
+--
+-- TOC entry 2407 (class 0 OID 0)
+-- Dependencies: 230
+-- Name: water_sources_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('water_sources_id_seq', 10, true);
+
+
+--
+-- TOC entry 2106 (class 2606 OID 17689)
+-- Name: agricultural_roads_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY agricultural_roads
+    ADD CONSTRAINT agricultural_roads_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2108 (class 2606 OID 17691)
+-- Name: appointments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY appointments
+    ADD CONSTRAINT appointments_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2110 (class 2606 OID 17693)
+-- Name: buildings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY buildings
+    ADD CONSTRAINT buildings_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2112 (class 2606 OID 17695)
+-- Name: certifications_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY certifications
+    ADD CONSTRAINT certifications_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2114 (class 2606 OID 17697)
+-- Name: cycles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY cycles
+    ADD CONSTRAINT cycles_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2116 (class 2606 OID 17699)
+-- Name: facilities_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY facilities
+    ADD CONSTRAINT facilities_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2118 (class 2606 OID 17701)
+-- Name: indigenous_peoples_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY indigenous_peoples
+    ADD CONSTRAINT indigenous_peoples_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2120 (class 2606 OID 17703)
+-- Name: institutes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY institutes
+    ADD CONSTRAINT institutes_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2122 (class 2606 OID 17705)
+-- Name: machineries_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY machineries
+    ADD CONSTRAINT machineries_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2124 (class 2606 OID 17707)
+-- Name: migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY migrations
+    ADD CONSTRAINT migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2128 (class 2606 OID 17709)
+-- Name: people_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY people
+    ADD CONSTRAINT people_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2130 (class 2606 OID 17711)
+-- Name: permissions_name_unique; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY permissions
+    ADD CONSTRAINT permissions_name_unique UNIQUE (name);
+
+
+--
+-- TOC entry 2132 (class 2606 OID 17713)
+-- Name: permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY permissions
+    ADD CONSTRAINT permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2134 (class 2606 OID 17715)
+-- Name: person_people_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY person_people
+    ADD CONSTRAINT person_people_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2136 (class 2606 OID 17717)
+-- Name: popular_organizations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY popular_organizations
+    ADD CONSTRAINT popular_organizations_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2138 (class 2606 OID 17719)
+-- Name: problematics_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY problematics
+    ADD CONSTRAINT problematics_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2140 (class 2606 OID 17721)
+-- Name: production_destinies_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY production_destinies
+    ADD CONSTRAINT production_destinies_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2142 (class 2606 OID 17723)
+-- Name: production_units_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY production_units
+    ADD CONSTRAINT production_units_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2144 (class 2606 OID 17725)
+-- Name: role_has_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY role_has_permissions
+    ADD CONSTRAINT role_has_permissions_pkey PRIMARY KEY (permission_id, role_id);
+
+
+--
+-- TOC entry 2146 (class 2606 OID 17727)
+-- Name: roles_name_unique; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY roles
+    ADD CONSTRAINT roles_name_unique UNIQUE (name);
+
+
+--
+-- TOC entry 2148 (class 2606 OID 17729)
+-- Name: roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2150 (class 2606 OID 17731)
+-- Name: scaffoldinterfaces_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY scaffoldinterfaces
+    ADD CONSTRAINT scaffoldinterfaces_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2152 (class 2606 OID 17733)
+-- Name: services_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY services
+    ADD CONSTRAINT services_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2154 (class 2606 OID 17735)
+-- Name: social_networks_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY social_networks
+    ADD CONSTRAINT social_networks_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2156 (class 2606 OID 17737)
+-- Name: transports_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY transports
+    ADD CONSTRAINT transports_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2158 (class 2606 OID 17739)
+-- Name: type_document_earths_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY type_document_earths
+    ADD CONSTRAINT type_document_earths_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2160 (class 2606 OID 17741)
+-- Name: type_identy_cards_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY type_identy_cards
+    ADD CONSTRAINT type_identy_cards_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2162 (class 2606 OID 17743)
+-- Name: user_has_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY user_has_permissions
+    ADD CONSTRAINT user_has_permissions_pkey PRIMARY KEY (user_id, permission_id);
+
+
+--
+-- TOC entry 2164 (class 2606 OID 17745)
+-- Name: user_has_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY user_has_roles
+    ADD CONSTRAINT user_has_roles_pkey PRIMARY KEY (role_id, user_id);
+
+
+--
+-- TOC entry 2166 (class 2606 OID 17747)
+-- Name: users_email_unique; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_email_unique UNIQUE (email);
+
+
+--
+-- TOC entry 2168 (class 2606 OID 17749)
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2170 (class 2606 OID 17751)
+-- Name: vegetable_sectors_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY vegetable_sectors
+    ADD CONSTRAINT vegetable_sectors_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2172 (class 2606 OID 17753)
+-- Name: water_sources_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY water_sources
+    ADD CONSTRAINT water_sources_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2125 (class 1259 OID 17754)
+-- Name: password_resets_email_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX password_resets_email_index ON password_resets USING btree (email);
+
+
+--
+-- TOC entry 2126 (class 1259 OID 17755)
+-- Name: password_resets_token_index; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX password_resets_token_index ON password_resets USING btree (token);
+
+
+--
+-- TOC entry 2173 (class 2606 OID 17756)
+-- Name: role_has_permissions_permission_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY role_has_permissions
+    ADD CONSTRAINT role_has_permissions_permission_id_foreign FOREIGN KEY (permission_id) REFERENCES permissions(id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2174 (class 2606 OID 17761)
+-- Name: role_has_permissions_role_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY role_has_permissions
+    ADD CONSTRAINT role_has_permissions_role_id_foreign FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2175 (class 2606 OID 17766)
+-- Name: user_has_permissions_permission_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY user_has_permissions
+    ADD CONSTRAINT user_has_permissions_permission_id_foreign FOREIGN KEY (permission_id) REFERENCES permissions(id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2176 (class 2606 OID 17771)
+-- Name: user_has_permissions_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY user_has_permissions
+    ADD CONSTRAINT user_has_permissions_user_id_foreign FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2177 (class 2606 OID 17776)
+-- Name: user_has_roles_role_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY user_has_roles
+    ADD CONSTRAINT user_has_roles_role_id_foreign FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2178 (class 2606 OID 17781)
+-- Name: user_has_roles_user_id_foreign; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY user_has_roles
+    ADD CONSTRAINT user_has_roles_user_id_foreign FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2352 (class 0 OID 0)
+-- Dependencies: 6
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2017-03-20 12:54:38 -04
+
+--
+-- PostgreSQL database dump complete
+--
+
