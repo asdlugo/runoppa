@@ -20,6 +20,11 @@
             <label for="description">description</label>
             <input id="description" name = "description" type="text" class="form-control">
         </div>
+        <div class="form-group">
+            <label for="status"></label>
+            <input id="status" type="radio" value="1" name="status">activo
+            <input id="status" type="radio" value="0" name="status">inactivo
+        </div>
         <button class = 'btn btn-primary' type ='submit'>Create</button>
     </form>
 </section>

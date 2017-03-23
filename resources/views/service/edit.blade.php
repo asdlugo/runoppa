@@ -23,6 +23,13 @@
             <input id="description" name = "description" type="text" class="form-control" value="{!!$service->
             description!!}">
         </div>
+        <div class="form-group">
+            <label for="status"></label>
+            <input id="status" type="radio" value="{!!$service->
+            description!!}" name="status">activo
+            <input id="status" type="radio" value="{!!$service->
+            description!!}" name="status">inactivo
+        </div>
         <button class = 'btn btn-primary' type ='submit'>Update</button>
     </form>
 </section>

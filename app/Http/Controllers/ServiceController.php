@@ -58,6 +58,9 @@ class ServiceController extends Controller
         $service->description = $request->description;
 
 
+        $service->status = $request->status;
+
+
         $service->save();
 
         $pusher = App::make('pusher');

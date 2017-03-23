@@ -15,6 +15,7 @@
         <thead>
             <th>name</th>
             <th>description</th>
+            <th>status</th>
             <th>actions</th>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
             <tr>
                 <td>{!!$service->name!!}</td>
                 <td>{!!$service->description!!}</td>
+                <td>{!!$service->status!!}</td>
                 <td>
                     <a data-toggle="modal" data-target="#myModal" class = 'delete btn btn-danger btn-xs' data-link = "/service/{!!$service->id!!}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
                     <a href = '#' class = 'viewEdit btn btn-primary btn-xs' data-link = '/service/{!!$service->id!!}/edit'><i class = 'material-icons'>edit</i></a>

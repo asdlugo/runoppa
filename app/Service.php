@@ -22,4 +22,36 @@ class Service extends Model
     protected $table = 'services';
 
 	
+
+	/**
+     * production_unit.
+     *
+     * @return  \Illuminate\Support\Collection;
+     */
+    public function production_units()
+    {
+        return $this->belongsToMany('App\Production_unit');
+    }
+
+    /**
+     * Assign a production_unit.
+     *
+     * @param  $production_unit
+     * @return  mixed
+     */
+    public function assignProduction_unit($production_unit)
+    {
+        return $this->production_units()->attach($production_unit);
+    }
+    /**
+     * Remove a production_unit.
+     *
+     * @param  $production_unit
+     * @return  mixed
+     */
+    public function removeProduction_unit($production_unit)
+    {
+        return $this->production_units()->detach($production_unit);
+    }
+
 }
